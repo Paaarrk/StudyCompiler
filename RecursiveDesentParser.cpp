@@ -14,9 +14,13 @@ static const string T_OTHER = "other";
 static string lookAhead = "";
 static int index = 0;
 
-// 확인할 코드
-//static array<string, 5> code = { T_WHILE, "(", T_EXPR, ")", T_OTHER };
-static array<string, 3> code = { T_FOR, "(", ";" };
+
+
+/* Code for parsing */
+static array<string, 5> code = { T_WHILE, "(", T_EXPR, ")", T_OTHER };
+//static array<string, 3> code = { T_FOR, "(", ";" }; - Error Code
+
+
 static void report(string msg)
 {
 	cout << msg << endl;
