@@ -55,7 +55,7 @@ public:
 	void push(string& str);
 
 	void show() const;
-	void initindex(); //idx¹è¿­À» ÅëÇØ ¹Ù·Î ½ºÅ×ÀÌÆ®·Î °¥ ¼ö ÀÖ´Ù.
+	void initindex(); //idxë°°ì—´ì„ í†µí•´ ë°”ë¡œ ìŠ¤í…Œì´íŠ¸ë¡œ ê°ˆ ìˆ˜ ìˆë‹¤.
 	void idxshow();
 	void initff();  //failure function
 	void ffshow() const;
@@ -68,22 +68,22 @@ public:
 
 int main(void)
 {
-	//Æ®¶óÀÌ»ı¼º
-	cout << "Æ®¶óÀÌ »ı¼º" << endl;
+	//íŠ¸ë¼ì´ìƒì„±
+	cout << "íŠ¸ë¼ì´ ìƒì„±" << endl;
 	trie tr;
-	//ÆĞÅÏ Æ®¶óÀÌ¿¡ ³Ö±â
-	cout << "ÆĞÅÏ ³Ö±â" << endl;
+	//íŒ¨í„´ íŠ¸ë¼ì´ì— ë„£ê¸°
+	cout << "íŒ¨í„´ ë„£ê¸°" << endl;
 	string pat = "aaa";
 	tr.push(pat);
 	string pat2 = "abaab";
 	tr.push(pat2);
 	string pat3 = "ababaa";
 	tr.push(pat3);
-	//ÆĞÅÏ º¸±â 
-	cout << "ÆĞÅÏÀÌ µé¾î°£ Æ®¶óÀÌ È®ÀÎ(¸¶Áö¸· ¼ıÀÚ´Â max_state," <<'\n' << " ¼ıÀÚµÎ¹øÀº ºĞ±âÁ¡À» ¶æÇÔ" << endl;
+	//íŒ¨í„´ ë³´ê¸° 
+	cout << "íŒ¨í„´ì´ ë“¤ì–´ê°„ íŠ¸ë¼ì´ í™•ì¸(ë§ˆì§€ë§‰ ìˆ«ìëŠ” max_state," <<'\n' << " ìˆ«ìë‘ë²ˆì€ ë¶„ê¸°ì ì„ ëœ»í•¨" << endl;
 	tr.show();
-	//ÀÎµ¦½º ¹è¿­ »ı¼º ¹× È®ÀÎ
-	cout << "ÀÎµ¦½º ¹è¿­" << endl;
+	//ì¸ë±ìŠ¤ ë°°ì—´ ìƒì„± ë° í™•ì¸
+	cout << "ì¸ë±ìŠ¤ ë°°ì—´" << endl;
 	tr.initindex();
 	tr.idxshow();
 	cout << "FailureFunction" << endl;
@@ -128,7 +128,7 @@ trie::~trie()
 	stack<node*> del;
 	queue<node*> frag;
 	node* ptr = start;
-	//ÀÏ´Ü ÀÏÀÚ·Î ÀĞÀ¸¸é¼­ ½ºÅÃ¿¡ ³ÖÀ½, ´Ü ºĞ±â°¡ÀÖ´Â ³ëµåÀÇ °æ¿ì Å¥¿¡ ºĞ±âµé¸¸ ÀúÀå
+	//ì¼ë‹¨ ì¼ìë¡œ ì½ìœ¼ë©´ì„œ ìŠ¤íƒì— ë„£ìŒ, ë‹¨ ë¶„ê¸°ê°€ìˆëŠ” ë…¸ë“œì˜ ê²½ìš° íì— ë¶„ê¸°ë“¤ë§Œ ì €ì¥
 	for (ptr; ptr != NULL; ptr = ptr->next[0])
 	{
 		if (ptr->ptrnum == 1)
@@ -144,7 +144,7 @@ trie::~trie()
 			}
 		}
 	}
-	//Å¥¿¡ ÀÖ´Â ºĞ±âµéµµ ½ºÅÃ¿¡ ³ÖÀ½
+	//íì— ìˆëŠ” ë¶„ê¸°ë“¤ë„ ìŠ¤íƒì— ë„£ìŒ
 	while(!frag.empty())
 	{
 		ptr = frag.front();
@@ -162,7 +162,7 @@ trie::~trie()
 		}
 	}
 
-	//½ºÅÃ¿¡ Á¦ÀÏ ¸¶Áö¸· ³ëµåºÎÅÍ ²¨³»¸é¼­ ¸Ş¸ğ¸® ÇØÁ¦, ¸¶Áö¸·¿¡ ½ºÅ¸Æ® ³ëµåµµ ¸Ş¸ğ¸® ÇØÁ¦ÇÔ(Ã³À½¿¡ ³Ö¾î¼­)
+	//ìŠ¤íƒì— ì œì¼ ë§ˆì§€ë§‰ ë…¸ë“œë¶€í„° êº¼ë‚´ë©´ì„œ ë©”ëª¨ë¦¬ í•´ì œ, ë§ˆì§€ë§‰ì— ìŠ¤íƒ€íŠ¸ ë…¸ë“œë„ ë©”ëª¨ë¦¬ í•´ì œí•¨(ì²˜ìŒì— ë„£ì–´ì„œ)
 	while (!del.empty())
 	{
 		delete del.top();
@@ -194,24 +194,24 @@ void trie::push(string& str)
 	node* ptr = start;
 	node* temp = start->next[0];
 	int i = 0;
-	int k = 0;//next¸¦ °¡¸®Å°±âÀ§ÇÑ º¯¼ö
+	int k = 0;//nextë¥¼ ê°€ë¦¬í‚¤ê¸°ìœ„í•œ ë³€ìˆ˜
 	while (i < str.length())
 	{
-		if (ptr->tag == true) //stateÀÌ¹Ç·Î °Ç³Ê¶Ù´Âµ¥, ´ÙÀ½ ¹®ÀÚ°¡ ´Ù¸¦°ÍÀ» ´ëºñÇØ ÁÖ¼Ò ÀúÀå
+		if (ptr->tag == true) //stateì´ë¯€ë¡œ ê±´ë„ˆë›°ëŠ”ë°, ë‹¤ìŒ ë¬¸ìê°€ ë‹¤ë¥¼ê²ƒì„ ëŒ€ë¹„í•´ ì£¼ì†Œ ì €ì¥
 		{
 			temp = &(*ptr);
 			ptr = ptr->next[k];
 		}
 		else {
-			if (ptr->type.c == str[i]) //¹®ÀÚ°¡ °°À¸¸é
+			if (ptr->type.c == str[i]) //ë¬¸ìê°€ ê°™ìœ¼ë©´
 			{
 				k = 0;
-				ptr = ptr->next[0]; //´ÙÀ½¹®ÀÚ¸¦ °Ë»çÇÑ´Ù.
+				ptr = ptr->next[0]; //ë‹¤ìŒë¬¸ìë¥¼ ê²€ì‚¬í•œë‹¤.
 				i++;
 			}
-			else //¹®ÀÚ°¡ ´Ù¸£¸é
+			else //ë¬¸ìê°€ ë‹¤ë¥´ë©´
 			{
-				//ÀÌÀü Æ÷ÀÎÅÍÀÇ ÀÚ½Ä³ëµå°¡ ¸î°³ÀÎÁö È®ÀÎ
+				//ì´ì „ í¬ì¸í„°ì˜ ìì‹ë…¸ë“œê°€ ëª‡ê°œì¸ì§€ í™•ì¸
 				if ((temp)->ptrnum == 1)
 					break;
 				else
@@ -315,14 +315,14 @@ void trie::show() const
 
 void trie::initindex()
 {
-	queue<node*> frag; //ºĞ±âÁ¡À» ÀúÀåÇÒ ³ëµå
+	queue<node*> frag; //ë¶„ê¸°ì ì„ ì €ì¥í•  ë…¸ë“œ
 	node* ptr = start;
 	for (ptr; ptr != NULL; ptr = ptr->next[0])
 	{
-		if (ptr->tag) //state ÀÏ¶§
+		if (ptr->tag) //state ì¼ë•Œ
 		{
 			idx.push_back(ptr);
-			if (ptr->ptrnum > 1) //´Ù¸¥ºĞ±â¿¡µµ state node°¡ Á¸ÀçÇÏ´Ï °Ë»ç¸¦ À§ÇØ Å¥¿¡ ³Ö´Â´Ù.
+			if (ptr->ptrnum > 1) //ë‹¤ë¥¸ë¶„ê¸°ì—ë„ state nodeê°€ ì¡´ì¬í•˜ë‹ˆ ê²€ì‚¬ë¥¼ ìœ„í•´ íì— ë„£ëŠ”ë‹¤.
 			{
 				for (int i = 1; i < ptr->ptrnum; i++)
 				{
@@ -331,7 +331,7 @@ void trie::initindex()
 			}
 		}
 	}
-	//¹®ÀÚÀÏ¶§´Â ³ÖÀ»°ÍÀÌ¾ø´Ù.
+	//ë¬¸ìì¼ë•ŒëŠ” ë„£ì„ê²ƒì´ì—†ë‹¤.
 
 	while (!frag.empty())
 	{
@@ -369,23 +369,23 @@ bool compareCount(pair<int,int> r1, pair<int, int> r2)
 void trie::initff() //n = pat_num
 {
 	ff = new int[max_state + 1];
-	ff[0] = 0; ff[1] = 0; //0: ¹®ÀÚ¿­±æÀÌ 0, 1: ¹®ÀÚ¿­ ±æÀÌ1
-	queue<char> letter; //¹®ÀÚ¸¦ ÀúÀåÇÒ Å¥
-	queue<node*> frag;  //ºĞ±â¸¦ ÀúÀåÇÒ Å¥
+	ff[0] = 0; ff[1] = 0; //0: ë¬¸ìì—´ê¸¸ì´ 0, 1: ë¬¸ìì—´ ê¸¸ì´1
+	queue<char> letter; //ë¬¸ìë¥¼ ì €ì¥í•  í
+	queue<node*> frag;  //ë¶„ê¸°ë¥¼ ì €ì¥í•  í
 
-	vector<pair<node*, int>> path; //°¡´ø±æÀ» ÀúÀå
-	pair<node*, int> set; //ÇöÀç °í¸¥°Å ´ãÀ»°ø°£
-	node* ptr = start; //ÆĞÅÏ ºñ±³¸¦ ÇÏ±â À§ÇÑ Æ÷ÀÎÅÍ
-	int select = 0; //ºĞ±âÁ¡¿¡¼­ ¾îµğ·Î °¡´ÂÁö
+	vector<pair<node*, int>> path; //ê°€ë˜ê¸¸ì„ ì €ì¥
+	pair<node*, int> set; //í˜„ì¬ ê³ ë¥¸ê±° ë‹´ì„ê³µê°„
+	node* ptr = start; //íŒ¨í„´ ë¹„êµë¥¼ í•˜ê¸° ìœ„í•œ í¬ì¸í„°
+	int select = 0; //ë¶„ê¸°ì ì—ì„œ ì–´ë””ë¡œ ê°€ëŠ”ì§€
 
-	int count = 0; //ÀÏÄ¡ È½¼ö
-	int dif_count = 0; //´Ù¸¥ È½¼ö
-	vector<pair<int, int>> temp; //ÀÏÄ¡È½¼ö¿Í °¡¾ßÇÒ stateÀÇ idx¸¦ ÀúÀå
-	pair<int, int> now_temp; // temp¿¡ ÀúÀåÇÒ pair¼¼ÆÃ
-	int s = 0; //»ç¿ëÇÒ º¯¼ö
-	queue<node*> done; //ºĞ±â¿¡¼­ ¾ÈÁö³ª°£°÷ ÀúÀå
-	node* tempnode; //Á÷ÀüÀÇ ³ëµå¸¦ ÀúÀåÇÒ °Í
-	int bef = 0; //ÀÌÀüÀ¸·Î µ¹¾Æ°¡±âÀ§ÇÑ ÀÎµ¦½º¸¦ ÀúÀåÇÒ°Í
+	int count = 0; //ì¼ì¹˜ íšŸìˆ˜
+	int dif_count = 0; //ë‹¤ë¥¸ íšŸìˆ˜
+	vector<pair<int, int>> temp; //ì¼ì¹˜íšŸìˆ˜ì™€ ê°€ì•¼í•  stateì˜ idxë¥¼ ì €ì¥
+	pair<int, int> now_temp; // tempì— ì €ì¥í•  pairì„¸íŒ…
+	int s = 0; //ì‚¬ìš©í•  ë³€ìˆ˜
+	queue<node*> done; //ë¶„ê¸°ì—ì„œ ì•ˆì§€ë‚˜ê°„ê³³ ì €ì¥
+	node* tempnode; //ì§ì „ì˜ ë…¸ë“œë¥¼ ì €ì¥í•  ê²ƒ
+	int bef = 0; //ì´ì „ìœ¼ë¡œ ëŒì•„ê°€ê¸°ìœ„í•œ ì¸ë±ìŠ¤ë¥¼ ì €ì¥í• ê²ƒ
 	
 
 	for (int i = 2; i <= max_state; i++)
@@ -415,7 +415,7 @@ void trie::initff() //n = pat_num
 		}
 		path.erase(path.begin());
 
-		//ÆĞÅÏ µû¿À±â°¡³¡³ª¸é ºñ±³
+		//íŒ¨í„´ ë”°ì˜¤ê¸°ê°€ëë‚˜ë©´ ë¹„êµ
 		select = 0;
 		count = 0;
 		dif_count = 0;
@@ -428,7 +428,7 @@ void trie::initff() //n = pat_num
 				if (ptr->next[i]!=NULL && ptr->next[i]->type.c == path.front().first->next[path.front().second]->type.c)
 				{
 					count++;
-					s = i; //°°Àº°æ¿ì´Â À¯ÀÏÇÔ. ±× °æ·Î¸¦ Á¤ÇÏ±â À§ÇØ Ã¼Å©
+					s = i; //ê°™ì€ê²½ìš°ëŠ” ìœ ì¼í•¨. ê·¸ ê²½ë¡œë¥¼ ì •í•˜ê¸° ìœ„í•´ ì²´í¬
 				}
 				else {
 					dif_count++;
@@ -440,7 +440,7 @@ void trie::initff() //n = pat_num
 				ptr = start; dif_count = 0;
 				path.erase(path.begin());
 			}
-			else {//count°¡ ¾Õ¼­ °°¾Ò´øÀÌÀ¯·Î 0ÀÌ¾Æ´Ò¶§
+			else {//countê°€ ì•ì„œ ê°™ì•˜ë˜ì´ìœ ë¡œ 0ì´ì•„ë‹ë•Œ
 				if (dif_count == ptr->ptrnum) //
 				{
 					dif_count = 0; count = 0;
@@ -482,18 +482,19 @@ void trie::ffshow() const
 	cout << endl;
 }
 
+//not-done
 void trie::match(string& str)
 {
 	int len = str.length();
-	int p = 0; //ÇöÀç ½ºÆ®¸µ¹®ÀÚ¿­À» °¡¸£Å°´Â Æ÷ÀÎÅÍ
-	node* ptr = start; //Æ®¶óÀÌ¸¦ °¡¸®Å°±â À§ÇÑ Æ÷ÀÎÅÍ
-	node* bef = start; //ÀÌÀü³ëµå¸¦ °¡¸®Å°±âÀ§ÇÑ Æ÷ÀÎÅÍ
-	int* arr = new int[pat_num]; //ÀÏÄ¡ ¹®ÀÚ¿­À» ¼¼°í ¿©±â ÀúÀå
+	int p = 0; //í˜„ì¬ ìŠ¤íŠ¸ë§ë¬¸ìì—´ì„ ê°€ë¥´í‚¤ëŠ” í¬ì¸í„°
+	node* ptr = start; //íŠ¸ë¼ì´ë¥¼ ê°€ë¦¬í‚¤ê¸° ìœ„í•œ í¬ì¸í„°
+	node* bef = start; //ì´ì „ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ê¸°ìœ„í•œ í¬ì¸í„°
+	int* arr = new int[pat_num]; //ì¼ì¹˜ ë¬¸ìì—´ì„ ì„¸ê³  ì—¬ê¸° ì €ì¥
 	for (int i = 0; i < pat_num; i++)
 		arr[i] = 0;
 
 	cout << arr[0] << arr[1] << arr[2] << endl;
-	//finalstateÁ¤ÀÇ
+	//finalstateì •ì˜
 	int* finalstate = new int[pat_num];
 	for (int i = 0; i < pat_num; i++)
 		finalstate[i] = 0;
@@ -529,9 +530,9 @@ void trie::match(string& str)
 
 	p = 0;
 	int s = 0;
-	int fnum = 0;//ºĞ±âÁ¡ ¼ö
-	int count = 0; //ÀÏÄ¡ ¼ö
-	int dif_count = 0; //ºÒÀÏÄ¡¼ö
+	int fnum = 0;//ë¶„ê¸°ì  ìˆ˜
+	int count = 0; //ì¼ì¹˜ ìˆ˜
+	int dif_count = 0; //ë¶ˆì¼ì¹˜ìˆ˜
 	ptr = start;
 	bool x = false;
 	while (p < len)
@@ -582,7 +583,7 @@ void trie::match(string& str)
 				ptr = idx[ff[(bef->type.idx)]];
 			}
 		}
-		else //°°À»¶§
+		else //ê°™ì„ë•Œ
 		{
 			p++;
 			if (ptr->next[0] == NULL)
